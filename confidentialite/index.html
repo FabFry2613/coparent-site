@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Politique de confidentialité — Coparent</title>
+<meta name="description" content="Politique de confidentialité de l'application Coparent : local-first, chiffré, cloud de l'utilisateur, aucun serveur éditeur." />
+<style>
+  :root{--ink:#0f1830;--muted:#5a6683;--line:#e5e9f2;--bg:#f6f8fc;--card:#fff;--accent:#4f5bd5;--homeA:#3f7bd6;--homeB:#e6a23c}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.65}
+  a{color:var(--accent)}
+  .wrap{max-width:760px;margin:0 auto;padding:0 20px}
+  header{background:#0f1830;color:#fff;padding:36px 0}
+  .brand{display:flex;align-items:center;gap:12px;font-weight:700}
+  .dot{width:13px;height:13px;border-radius:50%;background:var(--homeA);box-shadow:15px 0 0 var(--homeB)}
+  main{padding:36px 0 64px}
+  h1{font-size:1.9rem;margin:18px 0 4px;text-wrap:balance}
+  .date{color:#aab8e0}
+  h2{font-size:1.2rem;margin:30px 0 8px;border-top:1px solid var(--line);padding-top:22px}
+  h3{font-size:1.02rem;margin:18px 0 6px}
+  p,li{color:#273150}
+  .muted{color:var(--muted)}
+  .note{background:#eef1fb;border:1px solid #dbe2fb;border-radius:12px;padding:14px 16px}
+  code{background:#eef1fb;padding:1px 6px;border-radius:6px}
+  footer{border-top:1px solid var(--line);padding:24px 0 48px;color:var(--muted);font-size:.95rem}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="brand"><span class="dot"></span> Coparent</div>
+    <h1>Politique de confidentialité</h1>
+    <div class="date">Dernière mise à jour : 5 octobre 2026</div>
+  </div>
+</header>
+
+<main class="wrap">
+  <p>Coparent est une application de coparentalité éditée par <strong>Éclat Sacré</strong>. Cette politique explique quelles données l'application traite, où elles sont stockées, et ce que l'éditeur voit (c'est-à-dire : rien). Coparent est un produit distinct ; cette politique ne concerne que l'application Coparent.</p>
+  <p><strong>Éditeur :</strong> Éclat Sacré — <strong>Contact :</strong> <a href="mailto:contact@eclat-sacre.fr">contact@eclat-sacre.fr</a></p>
+
+  <h2>Le principe : vos données restent chez vous</h2>
+  <p>Coparent est conçue « local d'abord ». Vos informations (enfants, plannings de garde, passations, dépenses, documents, notes) sont enregistrées <strong>sur votre appareil</strong>, dans une base de données <strong>chiffrée</strong> (SQLCipher). <strong>L'éditeur n'a aucun serveur, aucune base de données, et ne collecte ni ne reçoit aucune de vos données.</strong> Nous ne pouvons pas lire votre contenu.</p>
+
+  <h2>Ce que l'application traite</h2>
+  <ul>
+    <li>Les informations que vous saisissez pour organiser la coparentalité : prénoms et informations des enfants, rythmes de garde, passations, dépenses partagées, documents, notes.</li>
+    <li>Un identifiant d'appareil local et un nom d'appareil, utilisés uniquement pour afficher « modifié par » entre les deux parents.</li>
+    <li>Rien n'est transmis à l'éditeur. Il n'y a ni publicité, ni traceur publicitaire, ni revente de données.</li>
+  </ul>
+
+  <h2>Partage entre les deux parents</h2>
+  <p>Deux cas, au choix de l'utilisateur :</p>
+  <ol>
+    <li><strong>Invitation par fichier (par défaut)</strong> : vous envoyez à votre co-parent un fichier chiffré et une phrase secrète par le moyen de votre choix. Sans la phrase secrète, le fichier est illisible.</li>
+    <li><strong>Synchronisation automatique par votre compte cloud (optionnelle)</strong> : vous reliez un compte <strong>Dropbox, OneDrive ou Google Drive que vous possédez déjà</strong>. L'application y dépose des blocs <strong>chiffrés de bout en bout</strong> dans un dossier de votre propre compte, partagé avec votre co-parent. Le fournisseur de cloud ne voit que des données chiffrées illisibles, et l'éditeur ne voit toujours rien. Les jetons de connexion restent sur votre appareil, dans le coffre sécurisé du système.</li>
+  </ol>
+  <p>Vous pouvez à tout moment déconnecter la synchronisation ; cela n'affecte pas vos données locales.</p>
+
+  <h2>Accès à Google Drive, Dropbox et OneDrive</h2>
+  <p>Lorsque vous choisissez la synchronisation automatique, l'application demande l'accès <strong>limité</strong> nécessaire pour créer et utiliser <strong>un seul dossier dédié</strong>, dans votre propre compte :</p>
+  <ul>
+    <li><strong>Google Drive</strong> : périmètre <code>drive.file</code> uniquement, limité aux seuls fichiers créés par l'application. L'application n'accède pas au reste de votre Drive.</li>
+    <li><strong>Dropbox / OneDrive</strong> : accès limité à la lecture/écriture des fichiers de synchronisation et au partage du dossier dédié avec votre co-parent.</li>
+  </ul>
+
+  <h3>Mention Google API Services User Data Policy (Limited Use)</h3>
+  <div class="note">
+    <p style="margin:0 0 8px">Coparent's use and transfer of information received from Google APIs to any other app will adhere to the <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener">Google API Services User Data Policy</a>, including the Limited Use requirements.</p>
+    <p class="muted" style="margin:0">En français : l'utilisation et le transfert, par Coparent, des informations reçues des API Google respectent la politique « Google API Services User Data Policy », y compris ses exigences d'usage limité. Les données issues de Google Drive servent uniquement à faire fonctionner la synchronisation, ne sont jamais vendues, ne servent à aucune publicité, et ne sont pas transmises à des tiers en dehors de votre propre compte cloud.</p>
+  </div>
+
+  <h2>Enfants</h2>
+  <p>Coparent traite des informations <strong>concernant</strong> des enfants (prénoms, plannings), saisies par les parents. L'application est destinée à être utilisée <strong>par des adultes</strong> (les parents), et non par des enfants. Les parents sont responsables des informations qu'ils saisissent.</p>
+
+  <h2>Achats</h2>
+  <p>Les achats éventuels (version premium) sont gérés par l'<strong>App Store d'Apple</strong> ou <strong>Google Play</strong>. L'éditeur ne reçoit ni ne stocke vos informations de paiement.</p>
+
+  <h2>Vos droits (RGPD)</h2>
+  <p>Comme vos données restent sur votre appareil et dans vos propres comptes, vous en gardez le contrôle direct : vous pouvez les consulter, les modifier ou les supprimer depuis l'application, et supprimer le dossier de synchronisation dans votre cloud. Pour toute question : <a href="mailto:contact@eclat-sacre.fr">contact@eclat-sacre.fr</a>.</p>
+
+  <h2>Conservation et suppression</h2>
+  <p>Vos données sont conservées tant que vous les gardez sur votre appareil ou dans votre cloud. Désinstaller l'application supprime les données locales. Supprimer le dossier de synchronisation dans votre cloud supprime les données partagées.</p>
+
+  <h2>Modifications</h2>
+  <p>Cette politique peut être mise à jour. La date en haut de page indique la dernière version.</p>
+</main>
+
+<footer>
+  <div class="wrap">
+    Coparent est édité par Éclat Sacré. Contact : <a href="mailto:contact@eclat-sacre.fr">contact@eclat-sacre.fr</a> — <a href="/">Accueil</a>
+  </div>
+</footer>
+</body>
+</html>
