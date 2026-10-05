@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="robots" content="noindex" />
+<title>Rejoindre un espace Coparent</title>
+<style>
+  :root { color-scheme: light dark; --bg:#0b1020; --card:#151b31; --fg:#eef1f8; --muted:#aab2c8; --accent:#6ea8fe; --line:#273050; }
+  * { box-sizing: border-box; }
+  html, body { margin:0; }
+  body { background:var(--bg); color:var(--fg); font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; padding:env(safe-area-inset-top) 20px env(safe-area-inset-bottom); display:flex; min-height:100vh; align-items:center; justify-content:center; }
+  .card { width:100%; max-width:460px; background:var(--card); border:1px solid var(--line); border-radius:18px; padding:28px 24px; text-align:center; }
+  .eyebrow { display:inline-block; font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--accent); background:rgba(110,168,254,0.1); border:1px solid var(--line); border-radius:999px; padding:4px 12px; margin-bottom:14px; }
+  h1 { font-size:23px; margin:0 0 8px; }
+  p { color:var(--muted); margin:0 0 16px; }
+  .btn { display:block; text-align:center; text-decoration:none; font-weight:600; padding:14px 16px; border-radius:12px; margin:10px 0; }
+  .btn-primary { background:var(--accent); color:#071226; }
+  .btn-secondary { background:transparent; color:var(--fg); border:1px solid var(--line); }
+  .qr-wrap { margin:20px auto 8px; width:216px; max-width:80%; background:#fff; border-radius:14px; padding:14px; }
+  .qr-wrap img, .qr-wrap canvas { width:100%; height:auto; display:block; image-rendering:pixelated; }
+  .qr-caption { font-size:13px; color:var(--muted); margin:0 0 4px; }
+  .note { font-size:14px; color:var(--muted); background:rgba(110,168,254,0.08); border:1px solid var(--line); border-radius:12px; padding:12px 14px; margin-top:18px; text-align:left; }
+  .brand { font-size:13px; color:var(--muted); margin-top:18px; }
+</style>
+</head>
+<body>
+  <main class="card">
+    <span class="eyebrow" id="t-eyebrow">Invitation privée</span>
+    <h1 id="t-title">Rejoindre un espace partagé</h1>
+    <p id="t-intro">Installez Coparent pour rejoindre l’espace de votre co-parent, puis rouvrez ce lien : il s’ouvrira sur l’invitation.</p>
+
+    <a class="btn btn-primary" id="ios" href="https://apps.apple.com/app/id6818128873">
+      <span style="display:block;font-size:12px;font-weight:400;opacity:.8">iPhone / iPad</span>Télécharger sur l’App Store</a>
+    <a class="btn btn-primary" id="android" href="https://play.google.com/store/apps/details?id=com.ldapps.coparent">
+      <span style="display:block;font-size:12px;font-weight:400;opacity:.8">Android</span>Disponible sur Google Play</a>
+
+    <div class="qr-wrap" id="qr-wrap" hidden><div id="qr"></div></div>
+    <p class="qr-caption" id="t-qr">Ouvrez cette page sur votre téléphone, ou scannez le QR code ci-dessus.</p>
+
+    <a class="btn btn-secondary" id="open" href="#">Ouvrir dans l’app</a>
+    <p class="note" id="t-note">La phrase secrète ne se trouve pas dans ce lien. Votre co-parent vous la communique séparément : c’est elle qui protège vos données.</p>
+    <p class="brand">Coparent · Éclat Sacré</p>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.js"></script>
+  <script>
+    (function () {
+      // The fragment stays on the device and is never sent anywhere; we only reuse it to greet the
+      // guest, to build the "open in app" deep link, and to encode this same page URL as a QR so it
+      // can be moved from a desktop to a phone by scanning.
+      var hash = location.hash ? location.hash.slice(1) : '';
+      var from = '';
+      hash.replace(/^#/, '').split('&').forEach(function (pair) {
+        var i = pair.indexOf('=');
+        var k = decodeURIComponent(i === -1 ? pair : pair.slice(0, i));
+        var v = i === -1 ? '' : decodeURIComponent(pair.slice(i + 1));
+        if (k === 'from') from = v;
+      });
+
+      document.getElementById('open').href = 'coparent://rejoindre' + (hash ? '#' + hash : '');
+
+      var L = {
+        fr: { eyebrow:'Invitation privée', title:'Rejoindre un espace partagé', titleFrom:'Rejoignez {name} sur Coparent', intro:'Installez Coparent pour rejoindre l’espace de votre co-parent, puis rouvrez ce lien : il s’ouvrira sur l’invitation.', open:'Ouvrir dans l’app', qr:'Ouvrez cette page sur votre téléphone, ou scannez le QR code ci-dessus.', note:'La phrase secrète ne se trouve pas dans ce lien. Votre co-parent vous la communique séparément : c’est elle qui protège vos données.' },
+        en: { eyebrow:'Private invitation', title:'Join a shared space', titleFrom:'Join {name} on Coparent', intro:'Install Coparent to join your co-parent’s space, then reopen this link: it opens on the invitation.', open:'Open in the app', qr:'Open this page on your phone, or scan the QR code above.', note:'The secret phrase is not in this link. Your co-parent shares it with you separately: it is what protects your data.' },
+        es: { eyebrow:'Invitación privada', title:'Unirse a un espacio compartido', titleFrom:'Únete a {name} en Coparent', intro:'Instala Coparent para unirte al espacio de tu co-progenitor y vuelve a abrir este enlace: se abrirá en la invitación.', open:'Abrir en la app', qr:'Abre esta página en tu teléfono o escanea el QR de arriba.', note:'La frase secreta no está en este enlace. Tu co-progenitor te la comunica por separado: es lo que protege tus datos.' },
+        pt: { eyebrow:'Convite privado', title:'Juntar-se a um espaço partilhado', titleFrom:'Junte-se a {name} no Coparent', intro:'Instale o Coparent para se juntar ao espaço do seu coparente e volte a abrir esta ligação: abre no convite.', open:'Abrir na app', qr:'Abra esta página no seu telemóvel ou leia o QR code acima.', note:'A frase secreta não está nesta ligação. O seu coparente comunica-a em separado: é ela que protege os seus dados.' }
+      };
+      var lang = (navigator.language || 'fr').slice(0, 2);
+      var t = L[lang] || L.en;
+      document.documentElement.lang = L[lang] ? lang : 'en';
+      document.getElementById('t-eyebrow').textContent = t.eyebrow;
+      document.getElementById('t-title').textContent = from ? t.titleFrom.replace('{name}', from) : t.title;
+      document.getElementById('t-intro').textContent = t.intro;
+      document.getElementById('t-qr').textContent = t.qr;
+      document.getElementById('t-note').textContent = t.note;
+      document.getElementById('open').textContent = t.open;
+      document.title = from ? t.titleFrom.replace('{name}', from) : t.title;
+
+      // QR of this exact page URL, generated client-side. Nothing is sent to any server.
+      try {
+        if (typeof qrcode === 'function') {
+          var qr = qrcode(0, 'M');
+          qr.addData(location.href);
+          qr.make();
+          document.getElementById('qr').innerHTML = qr.createImgTag(5, 0);
+          document.getElementById('qr-wrap').hidden = false;
+        }
+      } catch (e) { /* no QR if the library failed to load; the links still work */ }
+    })();
+  </script>
+</body>
+</html>

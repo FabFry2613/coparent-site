@@ -1,0 +1,11 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "25AC64A6KS.com.ldapps.coparent",
+        "paths": [ "/rejoindre", "/rejoindre/*" ]
+      }
+    ]
+  }
+}
