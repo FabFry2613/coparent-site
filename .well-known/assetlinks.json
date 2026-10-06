@@ -4,7 +4,7 @@
     "target": {
       "namespace": "android_app",
       "package_name": "com.ldapps.coparent",
-      "sha256_cert_fingerprints": [ "REPLACE_WITH_PLAY_APP_SIGNING_SHA256" ]
+      "sha256_cert_fingerprints": [ "3C:3D:58:03:1B:35:C8:35:6F:5E:C8:4F:05:61:47:B3:62:9F:EC:1A:AB:72:0A:7A:3B:B3:76:7B:B7:5F:F6:EF" ]
     }
   }
 ]
